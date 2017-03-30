@@ -1,0 +1,202 @@
+/*--global.css--*/
+.marT50{margin-top:50px;}
+.marB50{margin-bottom:50px;}
+.marL30{margin-left:30px;}
+.marB30{margin-bottom:30px;}
+.marB20{margin-bottom:20px;}
+.marB10{margin-bottom:10px;}
+.marB150{margin-bottom:150px;}
+.padd30{padding:30px 10px;}
+.paddLF15{padding:0 15px 20px 15px;}
+.padd015{padding:0 15px;}
+
+
+
+/*--global.css end--*/
+
+
+.navbar_BG{
+	background:#00c0f1;
+	}
+.left_Bars{
+    position: absolute;
+    top: 14px;
+    left: 10px;
+	}
+.navbar-default .navbar-nav > .hover_BG a{
+	color:#000;
+	background:#0068c1;
+	}
+.navbar-default .navbar-nav > .hover_BG a:hover{
+	color:#fff;
+	background:#0068c1;
+	}
+.navbar-brand.logo_bins {
+	font-size:21px;
+	}
+.nav.navbar-nav .user_menu a, .navbar-brand.logo_bins {
+    color: #000;
+	}
+.nav.navbar-nav .user_menu a:hover {
+    color: #fff;
+	}
+	
+.content_area{
+	border:1px solid #959595;
+	/*padding:30px 10px;*/
+	margin-bottom:20px;
+	}
+.section .field_name {
+    color: #222;
+    font-weight: 600;
+    margin-bottom: 7px;
+	}
+.heading{
+	border-bottom:1px solid #ddd;
+	margin-bottom:20px;
+	}
+.title-end {
+    border-bottom: 3px solid #00c0f1;
+    display: block;
+    width: 129px;
+    padding-top: 7px;
+	}
+/*--binsy1_page start here--*/
+.binsy_login_page{
+	border:1px solid #ddd;
+	}
+.section.binsy_login_form {
+    padding: 20px 40px;
+	}
+.login_bg_head{
+	background:#00c0f1;
+	color:#fff;
+	font-size:22px;
+	font-weight:bold;
+	text-align:center;
+	padding:8px;
+	}
+
+/*--binsy2_page start here--*/
+.binsy_question {
+    border-bottom: 1px solid #959595;
+    padding: 15px 15px;
+    margin:0 0 30px 0;
+	}
+/*--binsy5_page start here--*/
+.control-label.binsy_heading_authority{
+	text-align:left;
+	}
+	
+.binsy_next_back_addbtn{
+	padding-left:0;
+	margin-bottom:0;
+	}
+.binsy_next_back_addbtn li{
+	display:inline-block;
+	list-style:none;
+	
+	}
+.binsy_next_back_addbtn li + li{
+	margin-left:15px;	
+	}
+.binsy_next_back_addbtn li .btn_back,
+.binsy_next_back_addbtn li .btn_add{
+	margin-right:8px;
+	}
+.binsy_next_back_addbtn li .btn_next{
+	margin-left:8px;
+	}
+/*--ntpc_box--*/
+
+.binsy_ntpc_border{
+	
+	}
+.ntpc_height{
+	height:170px;
+	width:100%;
+	}
+.ntpc {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 31%;
+    font-size: 21px;
+	}
+	
+.bisny_edit_btn_group{
+	border:1px solid #3b3b3b;
+	border-top:1px solid transparent;
+	padding:7px;
+	}
+.binsy_editbtn{background:#99a100;}
+.binsy_remobtn{background:#850001;}
+.bisny_edit_btn_group button {
+    color: #fff;
+	}
+.bisny_edit_btn_group button:hover {
+    color: #efefee;
+	}
+.binsy_barB15{
+	margin-bottom:15px;
+	}
+	
+/*--page4--*/
+.bg-primary.ntpc_height h3 {
+    padding-top: 34px;
+    margin-top: 0;
+	}
+.question_time{
+	padding:0 20px;
+	}
+.question_time li{
+	list-style:none;
+	margin-bottom:7px;
+	}
+.content_area.binsy_marB {
+    margin-bottom: 50px;
+	}
+/*--page6 & page10--*/
+.add_edit {
+    padding: 7px 15px;
+	}
+.user_width {
+    width: 305px;
+	}
+.sign_page img{
+	width:100%;
+	height:100%;
+	}
+
+	
+	
+	
+	
+@media screen and (max-width:767px){
+.navbar.navbar-default.navbar_BG.marT50 {
+    margin-top: 0px;
+	}
+
+.table.table-striped.binsy_table td, .table.table-striped.binsy_table th {
+    display: inline-block;
+}
+.navbar-default .navbar-nav .open .dropdown-menu.binsy > li > a{
+	color:#fff;
+	}
+.navbar-default .navbar-nav .open .dropdown-menu.binsy > li > a:hover{
+	color:#000;
+	}
+.user_width{
+	width:45px;
+	display:inline-block;
+	}
+
+}
+	
+
+
+
+	
+
+

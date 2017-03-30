@@ -1,0 +1,445 @@
+@media (min-width: 992px) and (max-width: 1199px) {
+.testimonial .media-object {
+    display: block;
+    max-height: 110px;
+}
+.blogs .caption h3 {
+    font-size: 16px;
+}
+.showcase li div {
+	padding: 12px 10px;
+}
+.showcase li div ul li {
+    font-size: 13px;
+}
+.showcase li h3 {
+    margin: 0 10px 10px 0;
+}
+.showcase li div a {
+    margin: 10px 0;
+}
+.showcase li:hover div {
+	bottom: -11px;
+}
+.showcase li div {
+    bottom: -137px;
+}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+.testimonial .media-object {
+    display: block;
+    max-height: 110px;
+}
+.blogs .caption h3 {
+    font-size: 16px;
+}
+.showcase li div {
+	padding: 12px 10px;
+}
+.showcase li div ul li {
+    font-size: 13px;
+}
+.showcase li h3 {
+    margin: 0 10px 10px 0;
+}
+.showcase li div a {
+    margin: 10px 0;
+}
+.showcase li:hover div {
+	bottom: -11px;
+}
+.showcase li div {
+    bottom: -137px;
+}
+.overlay h2 {
+	margin-top: 0;
+}
+.showcase li h3, .showcase li div ul.mob-hidden {
+	display: none;
+}
+.jobs-section .media-left, .auditions .media-left {
+    max-width: 100px;
+}
+.modal-dialog {
+    margin: 30px auto;
+    width: 94%;
+}
+
+}
+@media (min-width: 600px) and (max-width: 768px) {
+.heading-ruler {
+    margin: 15px auto 20px;
+}
+.showcase li {
+    margin-bottom: 20px;
+}
+.showcase li h3, .showcase li div ul.mob-hidden {
+	display: none;
+}
+.showcase li div, .showcase li:hover div {
+    bottom: 0;
+}
+.showcase li div a {
+    margin: 0;
+}
+.testimonial .media-left {
+	display: block;
+	padding-right: 0;
+}
+.testimonial .media-left img {
+	margin: auto;
+}
+.testimonial .media-body {
+    padding: 15px;
+    text-align: center;
+}
+.navbar-brand {
+	padding: 10px;
+}
+.content-area {
+    padding-top: 5px;
+}
+.requests .thumbnail img, .jobs .thumbnail img, .trendy .thumbnail img {
+	float: left;
+    max-height: 63px;
+	width: auto!important;
+}
+.requests .thumbnail .caption, .jobs .thumbnail .caption, .trendy .thumbnail .caption {
+    float: left;
+    min-height: inherit;
+}
+.jobs-section .media-left, .auditions .media-left {
+    max-width: 80px;
+}
+.jobs-section .media, .auditions .media {
+    padding: 15px 0;
+}
+
+.jobs-section .media-body, .auditions .media-body {
+    display: block;
+    max-width: inherit;
+    width: 100%;
+}
+.feature-side {
+    display: none;
+}
+.tab-content {
+    padding: 15px 0;
+}
+.login-modal .close {
+    top: 0;
+}
+.social a {
+    padding: 8px 10px;
+}
+.navbar-fixed-top {
+    background-color: #333;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+}
+.navbar-toggle {
+	margin-top: 18px;
+}
+.testimonial .media-left {
+    float: none;
+    margin: auto;
+    max-width: 50%;
+}
+.testimonial .owl-carousel .owl-item img {
+	max-width: 100%;
+	width: auto;
+}
+
+/*address section 03-05-2016
+-----------------------------------*/
+.col-sm-12.content-area.area-nobg.address{padding-top:0;}
+  .text-muted.address img {
+    width: 4.5%;
+}
+/* about_new section  06-05-2016
+-----------------------------------------------*/
+.about_new_banner h1{
+	font-size:45px;
+	top:124px
+}
+
+
+
+
+}
+@media (min-width: 480px) and (max-width: 600px) {
+body {
+    padding-top: 60px;
+}
+.carousel {
+    display: none;
+}
+.navbar-fixed-top {
+    background-color: #333;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+}
+.navbar-toggle {
+	margin-top: 18px;
+}
+.navbar-brand {
+	padding: 10px;
+}
+h2 {
+    font-size: 24px;
+	margin-top: 10px;
+}
+.heading-ruler {
+    margin: 15px auto 20px;
+}
+.showcase li {
+    margin-bottom: 20px;
+}
+.showcase li h3, .showcase li div ul.mob-hidden {
+	display: none;
+}
+.showcase li div, .showcase li:hover div {
+    bottom: 0;
+}
+.showcase li div a {
+    margin: 0;
+}
+.testimonial .media-left {
+	display: block;
+	padding-right: 0;
+}
+.testimonial .media-left img {
+	margin: auto;
+}
+.testimonial .media-body {
+    padding: 15px;
+    text-align: center;
+}
+.content-wrap.dnl-visible {
+    padding-top:  0!important;
+}
+.content-area {
+    padding-top: 5px;
+}
+.requests .thumbnail img, .jobs .thumbnail img, .trendy .thumbnail img {
+	float: left;
+    max-height: 63px;
+	width: auto!important;
+}
+.requests .thumbnail .caption, .jobs .thumbnail .caption, .trendy .thumbnail .caption {
+    float: left;
+    min-height: inherit;
+}
+.filter .table tr td {
+    width: 100%;
+    display: block;
+}
+.jobs-section .media-left, .auditions .media-left {
+    max-width: 60px;
+}
+.jobs-section .media, .auditions .media {
+    padding: 15px 0;
+}
+.jobs-section .media-body, .auditions .media-body {
+    display: block;
+    max-width: inherit;
+    width: 100%;
+}
+.feature-side {
+    display: none;
+}
+.tab-content {
+    padding: 15px 0;
+}
+.login-modal .close {
+    top: 0;
+}
+.social a {
+    padding: 8px 10px;
+}
+.testimonial .media-left {
+    float: none;
+    margin: auto;
+    max-width: 50%;
+}
+.btn-group.address p.text-muted.address {
+    margin: 1px 0 0 144px
+}
+
+/* about_new section  06-05-2016
+-----------------------------------------------*/
+.about_new_banner h1{
+	font-size:45px;
+	top:114px
+}
+.text-center.about_new {
+    text-align: left;
+}
+.about_new_banner h1{
+	width:100%; 
+	left:0;
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+body {
+    padding-top: 60px;
+}
+.carousel {
+    display: none;
+}
+.navbar-fixed-top {
+    background-color: #333;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+}
+.navbar-brand {
+	padding: 10px;
+}
+.navbar-toggle {
+	margin-top: 18px;
+}
+h2 {
+    font-size: 24px;
+	margin-top: 10px;
+}
+.heading-ruler {
+    margin: 15px auto 20px;
+}
+.showcase li {
+    margin-bottom: 20px;
+}
+.showcase li h3, .showcase li div ul.mob-hidden {
+	display: none;
+}
+.showcase li div, .showcase li:hover div {
+    bottom: 0;
+}
+.showcase li div a {
+    margin: 0;
+}
+.testimonial .media-left {
+	display: block;
+	padding-right: 0;
+}
+.testimonial .media-left img {
+	margin: auto;
+}
+.testimonial .media-body {
+    padding: 15px;
+    text-align: center;
+}
+.navbar-toggle {
+	position: absolute;
+	right: 0;
+}
+.content-wrap.dnl-visible {
+    padding-top:  0!important;
+}
+.content-area {
+    padding-top: 5px;
+}
+.requests .thumbnail img, .jobs .thumbnail img, .trendy .thumbnail img {
+	float: left;
+    max-height: 63px;
+	width: auto!important;
+}
+.requests .thumbnail .caption, .jobs .thumbnail .caption, .trendy .thumbnail .caption {
+    float: left;
+    min-height: inherit;
+}
+.filter .table tr td {
+    width: 100%;
+    display: block;
+}
+.jobs-section .media-left, .auditions .media-left {
+    max-width: 50px;
+}
+.jobs-section .media, .auditions .media {
+    padding: 15px 0;
+}
+.jobs-section .media-body, .auditions .media-body {
+    display: block;
+    max-width: inherit;
+    width: 100%;
+}
+.feature-side {
+    display: none;
+}
+.social a {
+    display: block;
+    width: 100%;
+}
+.tab-content {
+    padding: 15px 0;
+}
+.login-modal .close {
+    top: 0;
+}
+.testimonial .media-left {
+    float: none;
+    margin: auto;
+    max-width: 50%;
+}
+.about_new_work.Contact{width:100%;}
+/* address section 03-05-2016
+-----------------------------------*/
+.media-left.address img {height:auto;}
+.text-muted.address img {
+    width: 6.5%;
+}
+.text-muted.address.add_show{display:block;}
+
+/* about_new section  06-05-2016
+-----------------------------------------------*/
+.about_new_banner h1{
+	font-size:40px;
+	top:85px;
+	width:100%;
+	left:0;
+}
+.text-center.about_new {
+    text-align: left;
+}
+/* participate section  07-05-2016
+-----------------------------------------------*/
+.participate_listbg{
+	width:13%;
+}
+.participate_text{
+	width:87%;
+	line-height:19px!important;
+	padding-top:40px;
+}
+.participate_text.padding_fixed{
+	padding:15px !important;
+}
+}
+@media (max-width: 768px) {
+  .megamenu{
+    margin-left: 0 ;
+    margin-right: 0 ;
+  }
+  .megamenu li {
+    margin-bottom: 30px;
+  }
+  .megamenu li:last-child {
+    margin-bottom: 0;
+  }
+  .megamenu.dropdown-header {
+    padding: 3px 15px !important;
+
+  }
+  .navbar-nav .open .dropdown-menu .dropdown-header{
+	color:#fff;
+  }
+  
+/*---navbar changing 14-07-2016---*/
+.navbar-brand.main {
+    float: none;
+	}
+
+
