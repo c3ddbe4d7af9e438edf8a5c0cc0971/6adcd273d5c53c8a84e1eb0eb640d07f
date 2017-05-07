@@ -1,7 +1,7 @@
 <?php
 // $admins_user=$data['admins_user'];
 $admin=$data['admin'];
-// echo '<pre>';print_r($admin);die;
+//echo '<pre>';print_r($admin);die;
 ?>
 <!doctype html>
 <html>
@@ -71,7 +71,7 @@ $admin=$data['admin'];
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-             <img src="assets/img/logo1.jpg" alt="">
+             <img src="assets/img/logo1.png" height="50" alt="">
           </header>
           <div class="topnav">
     <div class="btn-group">
@@ -142,7 +142,7 @@ $admin=$data['admin'];
             <div class="media-body">
                <div style="background-color:green;border-radius:50px;width:15px;height:15px;"></div>
                 <h5 class="media-heading">Name: <?=$admin->name?> </h5>
-                <h5 class="media-heading">Update: <?=$admin->updated_at?></h5>
+                <h5 class="media-heading">Last Login: <?=$admin->login_at?></h5>
                 <ul class="list-unstyled user-info">
                     <!-- <li><a href=""><?=$admin->name?></a></li>
                     <li>Update :<br>

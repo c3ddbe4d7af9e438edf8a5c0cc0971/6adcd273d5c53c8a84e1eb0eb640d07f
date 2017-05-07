@@ -61,7 +61,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                         <img src="assets/img/logo1.jpg" alt="">
+                         <img src="assets/img/logo1.png" height="50" alt="">
                     </header>
                     <div class="topnav">
         <div class="btn-group">
@@ -132,7 +132,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
             <div class="media-body">
                 <div style="background-color:green;border-radius:50px;width:15px;height:15px;"></div>
                 <h5 class="media-heading">Name: <?=$admin->name?> </h5>
-                <h5 class="media-heading">Update: <?=$admin->updated_at?></h5>
+                <h5 class="media-heading">Last Login: <?=$admin->login_at?></h5>
                 <ul class="list-unstyled user-info">
                     <!-- <li><a href=""><?=$admin->name?></a></li>
                     <li>Update :<br>
@@ -210,16 +210,16 @@ $actual_link = $_SERVER['REQUEST_URI'];
                           <p>Available Center</p>
                         </a>
 
-                        <a href="/labes?quiz_id=<?=$quiz_id?>&center_id=<?=$center_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/center_user?center_id='.$center_id.'&quiz_id='.$quiz_id) {echo 'active';} ?>">
+                        <a href="/labs?quiz_id=<?=$quiz_id?>&center_id=<?=$center_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/center_user?center_id='.$center_id.'&quiz_id='.$quiz_id) {echo 'active';} ?>">
                           <i class="glyphicon glyphicon-plus"></i>
                           <p>Available labes</p>
                         </a>
 
 
-                        <a href="/alloted_users?center_code=<?=$center_id?>&quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/alloted_users?quiz_id='.$quiz_id&'center_id='.$center_id) {echo 'active';} ?>">
+                       <!--  <a href="/alloted_users?center_code=<?=$center_id?>&quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/alloted_users?quiz_id='.$quiz_id&'center_id='.$center_id) {echo 'active';} ?>">
                           <i class="glyphicon glyphicon-ok"></i>
                           <p>Alloted Users</p>
-                        </a>
+                        </a> -->
                          <a href="/exam_instructions?quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/exam_instructions?quiz_id='.$quiz_id) {echo 'active';} ?>">
                           <i class="glyphicon glyphicon-file"></i>
                           <p>Exam Instruction</p>
@@ -246,24 +246,21 @@ $actual_link = $_SERVER['REQUEST_URI'];
                   <div class="panel-content">
                     
                       <div class="btn-group btn-group-justified">
-                          <a href="/un_alloted_lab_users?center_id=<?=$center_id?>&quiz_id=<?=$quiz_id?>&center_lab_id=<?=$center_lab_id?>&lab_id=<?=$lab_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/lab_users?center_id='.$center_id.'&quiz_id='.$quiz_id.'&center_lab_id='.$center_lab_id.'&lab_id='.$lab_id) {echo 'active';} ?>">
-                          <i class="glyphicon glyphicon-ok"></i>
+                          <a href="/un_alloted_lab_users?center_id=<?=$center_id?>&quiz_id=<?=$quiz_id?>&center_lab_id=<?=$center_lab_id?>&lab_id=<?=$lab_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/un_alloted_lab_users?center_id='.$center_id.'&quiz_id='.$quiz_id.'&center_lab_id='.$center_lab_id.'&lab_id='.$lab_id) {echo 'active';} ?>">
+                          <i class="glyphicon glyphicon-remove"></i>
                           <p>Un-Alloted Users</p>
                         </a>
                       <a href="/lab_users?center_id=<?=$center_id?>&quiz_id=<?=$quiz_id?>&center_lab_id=<?=$center_lab_id?>&lab_id=<?=$lab_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/lab_users?center_id='.$center_id.'&quiz_id='.$quiz_id.'&center_lab_id='.$center_lab_id.'&lab_id='.$lab_id) {echo 'active';} ?>">
                           <i class="glyphicon glyphicon-ok"></i>
                           <p>Alloted Users</p>
-                        </a>
-
-                        
-
+                        </a>      
                       </div>
                   </div><!--/panel content-->
               </div><!--/panel-->
 
                             <div id="collapse4" class="body">
 
-                             <form action="/allocate_center_to_users?center_id=<?=$center_id?>&quiz_id=<?=$quiz_id;?>" method="POST">
+                             <form action="/un_allocate_center_lab_to_users?center_id=<?=$center_id?>&quiz_id=<?=$quiz_id;?>&center_lab_id=<?=$center_lab_id?>&lab_id=<?=$lab_id?>" method="POST">
                                 <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
                                     <thead>
                                         <tr>
@@ -283,7 +280,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
                                         <?php if($allocated_users!='NULL') { ?>
                                             <?php foreach($allocated_users as $key => $value) {?>
                                                 <tr>
-                                                <td><input type="checkbox" name="users[]" value="<?php echo $value->id;?>" <?php foreach($allocated_users as $key1 => $value1){ if($value1->user_id==$value->id){ echo 'checked';}}?>></td>
+                                                <td><input type="checkbox" name="users[]" id="checkbox" value="<?php echo $value->id;?>" <?php foreach($allocated_users as $key1 => $value1){ if($value1->user_id==$value->id){ echo 'checked';}}?>></td>
                                                     <td><?php echo ++$i ;?></td>
                                                     <td><?php echo $value->name ;?></td>
                                                     <td><?php echo $value->reg_num ;?></td>
@@ -306,14 +303,15 @@ $actual_link = $_SERVER['REQUEST_URI'];
                                                     </tbody>
                                                     
                                                 </table>
-                                                <button type="submit" name="update_center" class="btn btn-primary"> Allocate Users</button>
+                                                <button type="submit" name="update_center" class="btn btn-primary" onclick="return testcheck()"> Un Allocate Users</button>
                                                 <a href="/add_center?quiz_id=<?=$quiz_id?>">
                                                             <button type="button" class="btn btn-success">
                                                                 <i class="fa fa-pencil-square" aria-hidden="true"></i>Add Center </button>
                                                             </a>
                                                 </form>
                                             </div> 
-                                             
+                                              <a  href="labs?quiz_id=<?=$quiz_id;?>&center_id=<?=$center_id;?>">
+                                <button type="button" class="btn btn-primary"> Back </button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -354,6 +352,31 @@ $actual_link = $_SERVER['REQUEST_URI'];
                         Metis.MetisTable();
                         Metis.metisSortable();
                     });
+                    // function testcheck()
+                    // {
+                    //     if (jQuery("#checkbox").is(":checked")) {
+                    //     alert("none checked");
+                    //     return false;
+                    //     }
+                    //     return true;
+                    // }
+                    function testcheck() {
+                       
+                    var a =document.getElementById("checkbox").checked;
+                    //alert(a);
+                    if(a==true){
+                    alert("please uncheck atleast one");
+                    exit();
+                        }
+                    }
+
+
+                    // script for handling back button functionality
+                      history.pushState(null, null, document.URL);
+                      window.addEventListener('popstate', function () {
+                      history.pushState(null, null, document.URL);
+                      alert("Please use Back Button on page");
+                      });
                 </script>
                 <!-- <script src="assets/js/style-switcher.js"></script> -->
             </body>

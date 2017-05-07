@@ -5,7 +5,7 @@ $results=$data['results'];
 $user_id=$data['user_id'];
 $actual_link = $_SERVER['REQUEST_URI'];
 // echo $data['user_id'];die;
- // echo '<pre>';print_r($results);die;
+// echo '<pre>';print_r($results);die;
 ?>
 <!doctype html>
 <html>
@@ -39,14 +39,10 @@ $actual_link = $_SERVER['REQUEST_URI'];
             rootpath: "/assets/"
         };
     </script>
-   <!--  <link rel="stylesheet" href="assets/css/style-switcher.css">
-    <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
-    <script src="assets/js/less.js"></script> -->
     <style type="text/css">
         label.error {
             color: #FB3A3A;
             display: inline-block;
-            /*margin: 4px 0 5px 125px;*/
             padding: 0;
             text-align: left;
             width: 220px;
@@ -67,7 +63,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                       <img src="assets/img/logo1.jpg" alt="">
+                       <img src="assets/img/logo1.png" height="50" alt="">
                     </header>
                     <div class="topnav">
         <div class="btn-group">
@@ -128,12 +124,8 @@ $actual_link = $_SERVER['REQUEST_URI'];
             <div class="media-body">
                 <div style="background-color:green;border-radius:50px;width:15px;height:15px;"></div>
                 <h5 class="media-heading">Name: <?=$admin->name?> </h5>
-                <h5 class="media-heading">Update: <?=$admin->updated_at?></h5>
+                <h5 class="media-heading">Last Login: <?=$admin->login_at?></h5>
                 <ul class="list-unstyled user-info">
-                    <!-- <li><a href=""><?=$admin->name?></a></li>
-                    <li>Update :<br>
-                        <small><i class="fa fa-calendar"></i>&nbsp;<?=$admin->updated_at?></small>
-                    </li> -->
                 </ul>
             </div>
         </div>
@@ -228,22 +220,18 @@ $actual_link = $_SERVER['REQUEST_URI'];
                                             <?php foreach ($results as $key => $value) {?>
                                                
                                                     <tr>
-                                    
-                                                   
-                                                       <td><?=$value->ques_id?></td>
+                                                    <td><?=$value->ques_id?></td>
                                                         <td><?=$value->question?></td>
                                                         <td><?=$value->opt1.' '.$value->opt2.' '.$value->opt3.' '.$value->opt4?></td>
-                                                        <td> <?php if($value->ansoption==''){ echo '<div style="background-color:red;border-radius:50px;width:15px;height:15px;"></div>';} else { echo $value->ansoption; }?></td>
+                                                       <!-- <td> <?php if($value->ansoption==''){ echo '<div style="background-color:red;border-radius:50px;width:15px;height:15px;"></div>';} else { echo $value->ansoption; }?></td>-->
+ <?php if($value->ansoption==''){ echo '<td style="background-color:red;">'.$value->ansoption.'</td>';} else { echo '<td style="background-color:green;">'.$value->ansoption.'</td>'; }?> 
                                                         <td><?=$value->correct_option?></td>
                                                         <td><?=$value->visited?></td>
                                                         <td><?=$value->mark?></td>
-                                                        
-                                                        
-                                                           
-                                                        </tr>
-                                                        <?php }?>
-                                                        </table>
-                                                        <a  href="users?admin_id=<?=$admin->id;?>">
+                                                    </tr>
+                                                    <?php }?>
+                                                    </table>
+                                                    <a  href="view_result?user_id=<?=$user_id?>">
                                 <button type="button" class="btn btn-primary"> Back </button></a>
                                             </div>
                                         </div>
@@ -286,7 +274,12 @@ $actual_link = $_SERVER['REQUEST_URI'];
                         Metis.MetisTable();
                         Metis.metisSortable();
                     });
+                      // script for handling back button functionality
+                      history.pushState(null, null, document.URL);
+                      window.addEventListener('popstate', function () {
+                      history.pushState(null, null, document.URL);
+                      alert("Please use Back Button on page");
+                      });
                 </script>
-                <!-- <script src="assets/js/style-switcher.js"></script> -->
             </body>
             </html>

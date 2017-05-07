@@ -10,26 +10,22 @@ class Quizzes extends Model
 		$model 					= new self;
 		$name 				    = $details['name'];
 		$title 					= $details['title'];
-
-		// $logo 					= $details['logo'];
 		$time_duration 			= $details['time_duration'];
 		$total_ques 		    = $details['total_ques'];
 		$current_date 			= date("Y-m-d H:i:s");
 		if(isset($_FILES['logo']))
 		{
-	      $errors= array();
-	      $file_name = time().$_FILES['logo']['name'];
-	      $file_size = $_FILES['logo']['size'];
-	      $file_tmp = $_FILES['logo']['tmp_name'];
-	      $file_type = $_FILES['logo']['type'];
-	      $file_ext=strtolower(end(explode('.',$_FILES['logo']['name'])));
-	      $expensions= array("jpeg","jpg","png");
-      
-      		if(in_array($file_ext,$expensions)=== false)
+	      $errors				= array();
+	      $file_name 			= time().$_FILES['logo']['name'];
+	      $file_size 			= $_FILES['logo']['size'];
+	      $file_tmp 			= $_FILES['logo']['tmp_name'];
+	      $file_type 			= $_FILES['logo']['type'];
+	      $file_ext				= strtolower(end(explode('.',$_FILES['logo']['name'])));
+	      $expensions			= array("jpeg","JPEG","jpg","JPG","png","PNG");
+      	  if(in_array($file_ext,$expensions)=== false)
       		{
          		$errors[]="extension not allowed, please choose a JPEG or PNG file.";
       		}
-      
       		if($file_size > 2097152) 
       		{
          		$errors[]='File size must be excately 2 MB';
@@ -74,59 +70,72 @@ class Quizzes extends Model
 	// this function is used for fetching the quiz
 	public static function get_single_quiz($quiz_id)
 	{
-		$model=new self;
-		$quizzes=$model->SELECT("SELECT * FROM 	quizzes WHERE id=$quiz_id");
+		$model 			=	new self;
+		$quizzes 		=	$model->SELECT("SELECT * FROM 	quizzes WHERE id=$quiz_id");
 		return $quizzes;
 	}
-
+    // function used for fetching the single quiz
 		public static function get_single_quiz1($quiz_id)
 	{
-		$model=new self;
-		$quizzes=$model->SELECT("SELECT q.*,e.examination FROM quizzes q left join examinations e on q.exam_id=e.id WHERE q.id=$quiz_id");
+		$model 			=	new self;
+		$quizzes 		=	$model->SELECT("SELECT q.*,e.examination FROM quizzes q left join examinations e on q.exam_id=e.id WHERE q.id=$quiz_id");
 		return $quizzes;
 	}
 	//  this function is used for update the quiz
 	public static function updatesingle_quiz($details,$quiz_id)
 	{
 		$model=new self;
-		$name 			= $details['name'];
+		//echo '<pre>';print_r($details);die;
+		$name 			    = $details['name'];
 		$title 				= $details['title'];
-		if(isset($_FILES['logo']))
+		$logo 				= '';
+		if(!empty($_FILES['logo']))
 		{
-	      $errors= array();
-	      $file_name = time().$_FILES['logo']['name'];
-	      $file_size = $_FILES['logo']['size'];
-	      $file_tmp = $_FILES['logo']['tmp_name'];
-	      $file_type = $_FILES['logo']['type'];
-	      $file_ext=strtolower(end(explode('.',$_FILES['logo']['name'])));
+			//echo 'hello'; die;
+	      $errors 			= array();
+	      $logo 			= $_FILES['logo']['name'];
+	      $file_size 		= $_FILES['logo']['size'];
+	      $file_tmp 		= $_FILES['logo']['tmp_name'];
+	      $file_type 		= $_FILES['logo']['type'];
+	      $file_ext 		= strtolower(end(explode('.',$_FILES['logo']['name'])));
 	      
-	      $expensions= array("jpeg","jpg","png");
-      
-	      if(in_array($file_ext,$expensions)=== false)
+	      $expensions 		= array("jpeg","JPEG","jpg","JPG","png","PNG");
+
+	      if($logo!='')
+	      {
+	      	//echo 'helloooo'; die;
+	      	 if(in_array($file_ext,$expensions)=== false)
 	      {
 	         $errors[]="extension not allowed, please choose a JPEG or PNG file.";
 	      }
       
-	      if($file_size > 2097152) 
+	      if($file_size > 20000) 
 	      {
-	         $errors[]='File size must be excately 2 MB';
+	         $errors[]='File size must be less than 20 KB';
 	      }
       
 	      if(empty($errors)==true) 
 	      {
-	         move_uploaded_file($file_tmp,"uploads/logo/".$file_name);
+	         move_uploaded_file($file_tmp,"uploads/logo/".$logo);
 	         echo "Success";
 	      }
 	      else
 	      {
-	         print_r($errors);
+	         print_r($errors); exit;
 	      }
+	      }
+	      else
+	      {
+	      	$logo = $details['logo1'];
+	      }
+      
+	     
    		}
 
 		$time_duration	  	= $details['time_duration'];
 		$total_ques	        = $details['total_ques'];
 
-		$quiz=$model->UPDATE("UPDATE quizzes SET name=?,title=?,logo=?,duration=?,total_ques=? WHERE id=?",[$name,$title,$file_name,$time_duration,$total_ques,$quiz_id]);
+		$quiz=$model->UPDATE("UPDATE quizzes SET name=?,title=?,logo=?,duration=?,total_ques=? WHERE id=?",[$name,$title,$logo,$time_duration,$total_ques,$quiz_id]);
 		return $quiz;
 	}
 	// this function is used for delete the quiz
@@ -137,7 +146,7 @@ class Quizzes extends Model
 		$quiz=$model->UPDATE("UPDATE quizzes SET status=? WHERE id=?",['0',$quiz_id]);
 		return $quiz;
 	}
-	
+	// function used for random digit
 	function randomDigits($length)
 	{
 	    $numbers 	= 	range(1,9);
@@ -287,7 +296,7 @@ class Quizzes extends Model
 	
 	}
 	/*-------------------------------------------------------------------------*/
-
+// function used for import csv for users,user_quizzes,centers,labs and center labs
 	public static function post_exam_users_csv($quiz_id)
 	{
 			if($_FILES['import_file']['name'])
@@ -297,7 +306,7 @@ class Quizzes extends Model
 				{
 					$handle = fopen($_FILES['import_file']['tmp_name'], "r");
 					$row = 0;
-					while (($data = fgetcsv($handle, 100000, ",")) !== FALSE) 
+					while (($data = fgetcsv($handle, 10000000000000000000000000000000, ",")) !== FALSE) 
 					{
 						$row++;
 						if($row == 1)
@@ -474,10 +483,25 @@ class Quizzes extends Model
 						
 				}
 						fclose($handle);
-						return "Import done";
+						//return "Import done";
 			}
+			$count_lab_cap = (new self)->SELECT("select center_lab_id, count(id) as lab_capacity from user_quizes where center_lab_id!=0 group by center_lab_id ");
+			// echo '<pre>';print_r($count);
+			//echo $count_lab_cap[0]->lab_capacity;//die;
+			foreach ($count_lab_cap as $key => $value) {
+			$update_capacity = (new self)->UPDATE("UPDATE labs SET capacity=? WHERE id=?",[$value->lab_capacity,$value->center_lab_id]);
+
+}
+$count_center_cap = (new self)->SELECT("select SUM(b.capacity) as center_cap,a.center_id from center_lab a left join labs b on b.id=a.lab_id group by a.center_id ");
+			echo '<pre>';print_r($count_center_cap);
+			echo $count_center_cap[0]->center_cap;//die;
+			foreach ($count_center_cap as $key1 => $value1) {
+			$update_capacity = (new self)->UPDATE("UPDATE centers SET capacity=? WHERE id=?",[$value1->center_cap,$value1->center_id]);
+
 	
 		}
+		return  "Import done"; //die;
+	}
 	}
 }
 

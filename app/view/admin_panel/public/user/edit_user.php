@@ -1,6 +1,7 @@
 <?php
 $admin=$data['admin'];
 $users=$data['users'];
+// echo "<pre>";print_r($users);die;
 ?>
 <!doctype html>
 <html>
@@ -62,7 +63,7 @@ $users=$data['users'];
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                         <img src="assets/img/logo1.jpg" alt="">
+                         <img src="assets/img/logo1.png" height="50" alt="">
                     </header>
                     <div class="topnav">
         <div class="btn-group">
@@ -132,7 +133,7 @@ $users=$data['users'];
             <div class="media-body">
                <div style="background-color:green;border-radius:50px;width:15px;height:15px;"></div>
                 <h5 class="media-heading">Name: <?=$admin->name?> </h5>
-                <h5 class="media-heading">Update: <?=$admin->updated_at?></h5>
+                <h5 class="media-heading">Last Login: <?=$admin->login_at?></h5>
                 <ul class="list-unstyled user-info">
                    <!--  <li><a href=""><?=$admin->name?></a></li>
                     <li>Update :<br>
@@ -218,7 +219,7 @@ $users=$data['users'];
                         </header>
                         <div id="collapse3" class="body">
                             <?php foreach ($users as $key => $value) { ?>
-                                <form action="/update_user?user_edit_id=<?=$value->id?>" method="POST"  class="form-horizontal" id="add-admin">
+                                <form action="/update_user?user_edit_id=<?=$value->id?>" method="POST"  class="form-horizontal" id="edit_user" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label class="control-label col-lg-4">Name:</label>
                                         <div class="col-lg-8">
@@ -255,6 +256,40 @@ $users=$data['users'];
                                             <input type="email" id="email" name="email" placeholder="Email" value="<?php echo $value->email ?>" class="form-control col-lg-6">
                                         </div>
                                     </div>
+
+                                     <div class="form-group">
+                                     <input type="hidden" name="profile" value="<?=$value->profile_pic?>">
+                                        <label class="control-label col-lg-4">Profile Picture:</label>
+                                        <div class="col-lg-8">
+                                            <img src="<?php echo 'uploads/photo/'.$value->profile_pic; ?>" height="80" width="80">
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <div class="form-group">
+                                         <label class="control-label col-lg-4"></label>
+                                        <div class="col-lg-8">
+                                            <input type="file" id="profile_pic" name="profile_pic" class="col-lg-6">
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <div class="form-group">
+                                    <input type="hidden" name="sign" value="<?=$value->sig_pic?>">
+                                        <label class="control-label col-lg-4">Signature Picture:</label>
+                                        <div class="col-lg-8">
+                                            <img src="<?php echo 'uploads/sign/'.$value->sig_pic; ?>" height="50" width="100">
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <div class="form-group">
+                                         <label class="control-label col-lg-4"></label>
+                                        <div class="col-lg-8">
+                                            <input type="file" id="sig_pic" name="sig_pic" class="col-lg-6">
+                                        </div>
+                                        <br>
+                                    </div>
                                    
                                     <div class="form-group">
                                         <label class="control-label col-lg-4">Language:</label>
@@ -270,13 +305,13 @@ $users=$data['users'];
                                     <div class="form-group">
                                         <label class="control-label col-lg-4"> Password:</label>
                                         <div class="col-lg-8">
-                                            <input type="password" id="password" name="password" placeholder="Password" value="<?php echo $value->password ?>" class="form-control col-lg-6">
+                                            <input type="password" id="password" name="password" placeholder="Password" value="<?php echo $value->hash_pwd ?>" class="form-control col-lg-6">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-lg-4">Confirm Password:</label>
                                         <div class="col-lg-8">
-                                            <input type="password" id="cfmPassword" name="cfmPassword" placeholder="Confirm Password" value="<?php echo $value->password ?>" class="form-control col-lg-6">
+                                            <input type="password" id="cfmPassword" name="cfmPassword" placeholder="Confirm Password" value="<?php echo $value->hash_pwd ?>" class="form-control col-lg-6">
                                         </div>
                                     </div>
                                     <div class="form-actions col-lg-8 col-lg-offset-4">
@@ -287,6 +322,8 @@ $users=$data['users'];
                                 </form>
                                 <?php }?>
                             </div>
+                            <a  href="/users">
+                                <button type="button" class="btn btn-primary"> Back </button></a>
                         </div>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -327,8 +364,28 @@ $users=$data['users'];
         Metis.MetisTable();
         Metis.metisSortable();
     });
+    history.pushState(null, null, document.URL);
+                  window.addEventListener('popstate', function () {
+                  history.pushState(null, null, document.URL);
+                  alert("Please use Back Button on page");
+                  });
+    var a= document.getElementById('profile_pic');
+    a.onchange=function(){
+        var file=a.files[0];
+        if(file.size>25000){
+            alert("file size must be less than 25kb");
+        }
+    };
+    var a= document.getElementById('sig_pic');
+    a.onchange=function(){
+        var file=a.files[0];
+        if(file.size>10000){
+            alert("file size must be less than 10kb");
+        }
+    };
+
 </script>
-<script src="assets/js/style-switcher.js"></script>
+<!-- <script src="assets/js/style-switcher.js"></script> -->
 </body>
 </html>
 <script src="/admin_assets/js/jquery.validate.min.js"></script>
@@ -336,18 +393,20 @@ $users=$data['users'];
     (function($,W,D)
     {
         var ADMIN = {};
+
         ADMIN.UTIL =
         {
             setupFormValidation: function()
             {
 //form validation rules
-$("#add-admin").validate({
+$("#edit_user").validate({
     rules: {
         name: "required",
         roll_num:"required",
         roll_code:"required",
         user_id:"required",
         language:"required",
+        reference_id:"required",
         mobile:{
             required: true,
             number: true
@@ -358,7 +417,6 @@ $("#add-admin").validate({
         },
         password:{
             required:true,
-            confirm:true,
             minlength:1
         },
         cfmPassword:{
@@ -369,10 +427,11 @@ $("#add-admin").validate({
     },
     messages: {
         name: "Please enter your name",
-        roll_num:"Please enter your Roll Number",
+         roll_num:"Please enter your Roll Number",
         roll_code:"Please enter your Roll Code",
         user_id:"Please enter your User Id",
         language:"Please enter your language",
+        reference_id:"Please enter your Reference id",
         mobile:{
             required:"Please enter your mobile number",
         },

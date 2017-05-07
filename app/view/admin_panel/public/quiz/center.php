@@ -2,9 +2,8 @@
 $centers=$data['centers'];
 $quiz_id=$data['quiz_id'];
 $exam_id=$data['exam_id'];
-//$allocated_centers=$data['allocated_centers'];
 //echo '<pre>';print_r($centers);die;
-//echo '<pre>';print_r($centers);die;
+// echo '<pre>';print_r($centers);die;
 $admin=$data['admins'];
 $actual_link = $_SERVER['REQUEST_URI'];
 ?>
@@ -12,6 +11,8 @@ $actual_link = $_SERVER['REQUEST_URI'];
 <html>
 <head>
     <meta charset="UTF-8">
+    <!--  <META HTTP-EQUIV="Refresh" CONTENT="15"> -->
+
     <!--IE Compatibility modes-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--Mobile first-->
@@ -40,9 +41,19 @@ $actual_link = $_SERVER['REQUEST_URI'];
             rootpath: "/assets/"
         };
     </script>
-   <!--  <link rel="stylesheet" href="assets/css/style-switcher.css">
-    <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
-    <script src="assets/js/less.js"></script> -->
+<!--  <link rel="stylesheet" href="assets/css/style-switcher.css">
+<link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
+<script src="assets/js/less.js"></script> -->
+<style type="text/css">
+    label.error {
+        color: #FB3A3A;
+        display: inline-block;
+        /*margin: 4px 0 5px 125px;*/
+        padding: 0;
+        text-align: left;
+        width: 220px;
+    }
+</style>
 </head>
 <body class="  ">
     <div class="bg-dark dk" id="wrap">
@@ -58,89 +69,80 @@ $actual_link = $_SERVER['REQUEST_URI'];
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                         <img src="assets/img/logo1.jpg" alt="">
+                        <img src="assets/img/logo1.png" height="50" alt="">
                     </header>
                     <div class="topnav">
-        <div class="btn-group">
-            <a href="/logout" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom"
-            class="btn btn-metis-1 btn-sm">
-            <i class="fa fa-power-off"></i>
-        </a>
-    </div>
-</div>
-<div class="collapse navbar-collapse navbar-ex1-collapse">
-    <!-- .nav -->
-    <ul class="nav navbar-nav">
-        <li><a href="dashboard?admin_id=<?=$admin->id?>"><i class="fa fa-dashboard"></i><span class="link-title">&nbsp;Dashboard</span></a></li>
-        <li class=""><a href="admin?admin_id=<?=$admin->id?>"><i class="fa fa-lock"></i><span class="link-title">&nbsp;Admins</span></a></li>
-        <li><a href="/users"><i class="fa fa-users" aria-hidden="true">&nbsp;Users</i></a></li>
-        <li class='dropdown '>
-            <a href="authority?admin_id=<?=$admin->id?>">
-            <i class="fa fa-building" aria-hidden="true">&nbsp; Authority</i>
-               
-            </a>
-        </li>
-        <li><a href="/questions"><i class="fa fa-question-circle" aria-hidden="true">&nbsp;Question Bank</i></a></li>
-        <li><a href="/result"><i class="fa fa-table" aria-hidden="true">&nbsp;Results</i></a></li>
-    </ul>
-    <!-- /.nav -->
-</div>
-</div>
-<!-- /.container-fluid -->
-</nav>
-<!-- /.navbar -->                        
-<header class="head">
-    <div class="search-bar">
-        <!-- /.main-search -->                                
-    </div>
-    <!-- /.search-bar -->
-    <div class="main-bar">
-        <h3>
-            <i class="fa fa-table"></i>&nbsp;
-            Centers
-             <a href="/demo_user_csv">
-                <button type="button" class="btn btn-success"> Demo User CSV </button>
-            </a>
+                        <div class="btn-group">
+                            <a href="/logout" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom"
+                            class="btn btn-metis-1 btn-sm">
+                            <i class="fa fa-power-off"></i>
+                        </a>
+                    </div>
 
-            <a href="/demo_question_csv">
-                <button type="button" class="btn btn-success"> Demo Question CSV </button>
-            </a>
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <!-- .nav -->
+                    <ul class="nav navbar-nav">
+                        <li><a href="dashboard?admin_id=<?=$admin->id?>"><i class="fa fa-dashboard"></i><span class="link-title">&nbsp;Dashboard</span></a></li>
+                        <li class=""><a href="admin?admin_id=<?=$admin->id?>"><i class="fa fa-lock"></i><span class="link-title">&nbsp;Admins</span></a></li>
+                        <li><a href="/users"><i class="fa fa-users" aria-hidden="true">&nbsp;Users</i></a></li>
+                        <li class='dropdown '>
+                            <a href="authority?admin_id=<?=$admin->id?>">
+                                <i class="fa fa-building" aria-hidden="true">&nbsp; Authority</i>
 
-            <a href="/demo_answer_csv">
-                <button type="button" class="btn btn-success"> Demo Answer Key CSV </button>
-            </a>
-        </h3>
+                            </a>
+                        </li>
+                        <li><a href="/questions"><i class="fa fa-question-circle" aria-hidden="true">&nbsp;Question Bank</i></a></li>
+                        <li><a href="/result"><i class="fa fa-table" aria-hidden="true">&nbsp;Results</i></a></li>
+                    </ul>
+                    <!-- /.nav -->
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <!-- /.navbar -->                        
+        <header class="head">
+            <div class="search-bar">
+                <!-- /.main-search -->                                
+            </div>
+            <!-- /.search-bar -->
+            <div class="main-bar">
+                <h3>
+                    <i class="fa fa-table"></i>&nbsp;
+                    Centers    
+                </h3>
+
+            </div>
+            <!-- /.main-bar -->
+        </header>
+        <!-- /.head -->
     </div>
-    <!-- /.main-bar -->
-</header>
-<!-- /.head -->
-</div>
-<!-- /#top -->
-<div id="left">
-    <div class="media user-media bg-dark dker">
-        <div class="user-media-toggleHover">
-            <span class="fa fa-user"></span>
-        </div>
-         <div class="user-wrapper bg-dark">
-            <a class="user-link" href="">
-                <img class="media-object img-thumbnail user-img" height="100" width="100" alt="User Picture" src="<?php echo 'profile_pic/'.$admin->profile_pic; ?>">
-                <!-- <span class="label label-danger user-label">16</span> -->
-            </a>
-            <div class="media-body">
-                <div style="background-color:green;border-radius:50px;width:15px;height:15px;"></div>
-                <h5 class="media-heading">Name: <?=$admin->name?> </h5>
-                <h5 class="media-heading">Update: <?=$admin->updated_at?></h5>
-                <ul class="list-unstyled user-info">
-                    <!-- <li><a href=""><?=$admin->name?></a></li>
-                    <li>Update :<br>
-                        <small><i class="fa fa-calendar"></i>&nbsp;<?=$admin->updated_at?></small>
-                    </li> -->
+    <!-- /#top -->
+    <div id="left">
+        <div class="media user-media bg-dark dker">
+            <div class="user-media-toggleHover">
+                <span class="fa fa-user"></span>
+            </div>
+            <div class="user-wrapper bg-dark">
+                <a class="user-link" href="">
+                    <img class="media-object img-thumbnail user-img" height="100" width="100" alt="User Picture" src="<?php echo 'profile_pic/'.$admin->profile_pic; ?>">
+                    <!-- <span class="label label-danger user-label">16</span> -->
+                </a>
+                <div class="media-body">
+                    <div style="background-color:green;border-radius:50px;width:15px;height:15px;"></div>
+                    <h5 class="media-heading">Name: <?=$admin->name?> </h5>
+                    <h5 class="media-heading">Last Login: <?=$admin->login_at?></h5>
+                    <ul class="list-unstyled user-info">
+                        <!--  <li><?=$admin->name?></li> -->
+                        <!--  <li>Update :<br> -->
+                        <!--  <small><i class="fa fa-calendar"></i>&nbsp;<?=$admin->updated_at?></small> -->
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
     <!-- #menu -->
-   <ul id="menu" class="bg-blue dker">
+    <ul id="menu" class="bg-blue dker">
         <li class="nav-header">Menu</li>
         <li class="nav-divider"></li>
         <li class="">
@@ -190,108 +192,92 @@ $actual_link = $_SERVER['REQUEST_URI'];
             <div class="row">
                 <div class="col-lg-12">
                     <div class="box">
-                         <header>
+                        <header>
                             <div class="icons"><i class="fa fa-table"></i></div>
-                            <h5>Available Centers</h5>
-                            </header>
-                <div class="panel">
-                  <div class="panel-content">
-                    
-                      <div class="btn-group btn-group-justified">
-                      <a href="/quiz_details?quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/quiz_details?quiz_id='.$quiz_id) {echo 'active';} ?>">
-                          <i class="glyphicon glyphicon-home"></i>
-                          <p>Exam details</p>
-                        </a>
-                      <a href="/centers?quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/centers?quiz_id='.$quiz_id) {echo 'active';} ?>">
-                          <i class="glyphicon glyphicon-plus"></i>
-                          <p>Available Center</p>
-                        </a>
-                        <a href="/exam_instructions?quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/exam_instructions?quiz_id='.$quiz_id) {echo 'active';} ?>">
-                          <i class="glyphicon glyphicon-file"></i>
-                          <p>Exam Instruction</p>
-                        </a>
-                        <a href="/question_manager?quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/question_manager?quiz_id='.$quiz_id) {echo 'active';} ?>">
-                          <i class="glyphicon glyphicon-list"></i>
-                          <p>Exam Questions</p>
-                        </a>
-                          <a href="/import_user_exam?quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/user_list?quiz_id='.$quizzes[0]->id) {echo 'active';} ?>">
-                          <i class="glyphicon glyphicon-user"></i>
-                          <p>Import User Exam</p>
-                        </a>
-                        <a href="/user_list?quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/user_list?quiz_id='.$quiz_id) {echo 'active';} ?>">
-                          <i class="glyphicon glyphicon-user"></i>
-                          <p>Exam User</p>
-                        </a>
+                            <h5>Centers</h5>
+                        </header>
 
-                      </div>
-                  </div><!--/panel content-->
-              </div><!--/panel-->
+                        <div class="panel">
+                            <div class="panel-content">
+                                <div class="btn-group btn-group-justified">
+                                    <a href="/quiz_details?quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/quiz_details?quiz_id='.$quiz_id) {echo 'active';} ?>">
+                                        <i class="glyphicon glyphicon-home"></i>
+                                        <p>Exam details</p>
+                                    </a>
+                                    <a href="/centers?quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/centers?quiz_id='.$quiz_id) {echo 'active';} ?>">
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                        <p>Available Center</p>
+                                    </a>
+                                    <a href="/exam_instructions?quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/exam_instructions?quiz_id='.$quiz_id) {echo 'active';} ?>">
+                                        <i class="glyphicon glyphicon-file"></i>
+                                        <p>Exam Instruction</p>
+                                    </a>
+                                    <a href="/question_manager?quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/question_manager?quiz_id='.$quiz_id) {echo 'active';} ?>">
+                                        <i class="glyphicon glyphicon-list"></i>
+                                        <p>Exam Questions</p>
+                                    </a>
+                                    <a href="/import_user_exam?quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/user_list?quiz_id='.$quiz_id) {echo 'active';} ?>">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                        <p>Import User Exam</p>
+                                    </a>
+                                    <a href="/user_list?quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/user_list?quiz_id='.$quiz_id) {echo 'active';} ?>">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                        <p>Exam User</p>
+                                    </a>
+                                </div>
+                            </div><!--/panel content-->
+                        </div><!--/panel-->
+                        <div id="collapse4" class="body">
+                            <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Sr.No</th>
+                                        <th>Center Name</th>
+                                        <th>Center Code</th>
+                                        <th>Capacity</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $i=0; ?>
+                                    <?php if($centers!='NULL') { ?>
+                                        <?php foreach($centers as $key => $value) {?>
+                                            <tr>
+                                                <td><?php echo ++$i ;?></td>
+                                                <td><a href="/labs?center_id=<?php echo $value->id?>&quiz_id=<?php echo $quiz_id;?>"><?php echo $value->name ;?></a></td>
+                                                <td><?php echo $value->code ?></td>
+                                                <td><?=$value->capacity?></td>
 
-                            <div id="collapse4" class="body">
+                                                <td>
+                                                    <a href="/edit_center?center_id=<?php echo $value->id ?>&quiz_id=<?php echo $quiz_id?> ">
+                                                        <button type="button" class="btn btn-primary pull-left">
+                                                            <i class="fa fa-pencil-square" aria-hidden="true"></i> Edit </button>
+                                                        </a>
+                                                        <form onSubmit="if(!confirm('Do you really want to delete?')){return false;}" action="<?php echo '/delete_center?center_id='.$value->id.'&quiz_id='.$quiz_id ?>" method="POST" class="smart-forms">
+                                                            &nbsp&nbsp<button type ="submit" id="Reco" class="btn btn-danger" style="display:inline"> Delete</button>
+                                                        </form>
+                                                    </td>
 
-                             <form action="/update_quiz_center?quiz_id=<?=$quiz_id?>" method="POST">
-                                <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
-                                    <thead>
-                                        <tr>
-                                        <!-- <th>Select</th> -->
-                                            <th>Sr.No</th>
-                                            <th>Center Name</th>
-                                            <th>Center Code</th>
-                                            <th>Capability</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                 
-                                        <?php $i=0; ?>
-                                        <?php if($centers!='NULL') { ?>
-                                            <?php foreach($centers as $key => $value) {?>
-                                                <tr>
-                                                <!--<td><input type="checkbox" name="centers[]" value="<?php //echo $value->id;?>" <?php //foreach($allocated_centers as $key1 => $value1){ if($value->id==$value1->center_id){ echo 'checked';}}?>></td>-->
-                                                    <td><?php echo ++$i ;?></td>
-                                                    <td><a href="/labs?center_id=<?php echo $value->id?>&quiz_id=<?php echo $quiz_id;?>"><?php echo $value->name ;?></a></td>
-                                                   
-                                                
-                                                    <td><?php echo $value->code ?></td>
-                                                    <td><?=$value->capacity?></td>
-                                                    
+                                                </tr> 
+                                                <?php }?>
+                                                <?php } else {?>
                                                     <td>
-                                                        <a href="/edit_center?center_id=<?php echo $value->id ?>&quiz_id=<?php echo $quiz_id?> ">
-                                                            <button type="button" class="btn btn-primary pull-left">
-                                                                <i class="fa fa-pencil-square" aria-hidden="true"></i> Edit </button>
-                                                            </a>
-                                                          
-                                                            <form action="<?php echo '/delete_center?quiz_id='.$quiz_id.'&center_id='.$value->id ?>" method="POST" class="smart-forms" ">
-                                                                &nbsp&nbsp
-                                                                <button type ="submit" id="Reco"  class="btn btn-danger <?php foreach($allocated_centers as $key1 => $value1){ if($value->id==$value1->center_id){ echo 'disabled'; } else {  } }?>" style=""> Delete</button>
-                                                            </form>
-                                                           </div>
-                                                          
-                                                        </td>
-                                                    </tr>
+                                                        <div class="sparkline bar_week"></div>
+                                                        <div class="stat_text">
+                                                            <strong>Not Found</strong>
+                                                        </div>
+                                                    </td>
                                                     <?php }?>
-                                                    <?php } else {?>
-                                                        <td>
-                                                            <div class="sparkline bar_week"></div>
-                                                            <div class="stat_text">
-                                                                <strong>Not Found</strong>
-                                                            </div>
-                                                        </td>
-                                                        <?php }?>
-                                                    </tbody>
-                                                    
-                                                </table>
-                                                 <a  href="quiz?exam_id=<?=$exam_id[0]->exam_id;?>">
-                                                    <button type="button" class="btn btn-primary"> Back </button>
+                                                </tbody>                
+                                            </table>
+                                            <a  href="quiz?exam_id=<?=$exam_id[0]->exam_id;?>">
+                                                <button type="button" class="btn btn-primary"> Back </button>
+                                            </a>
+                                            <a href="/add_center?quiz_id=<?=$quiz_id?>">
+                                                <button type="button" class="btn btn-success">
+                                                    <i class="fa fa-pencil-square" aria-hidden="true"></i>Add Center </button>
                                                 </a>
-                                                <!-- <button type="submit" name="update_center" class="btn btn-primary"> Allocate Center</button> -->
-                                                <a href="/add_center?quiz_id=<?=$quiz_id?>">
-                                                            <button type="button" class="btn btn-success">
-                                                                <i class="fa fa-pencil-square" aria-hidden="true"></i>Add Center </button>
-                                                            </a>
-                                                </form>
-                                            </div> 
-                                             
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -333,13 +319,13 @@ $actual_link = $_SERVER['REQUEST_URI'];
                         Metis.metisSortable();
                     });
 
-                     // script for handling back button functionality
-                      history.pushState(null, null, document.URL);
-                      window.addEventListener('popstate', function () {
-                      history.pushState(null, null, document.URL);
-                      alert("Please use Back Button on page");
-                      });
-                </script>
-                <!-- <script src="assets/js/style-switcher.js"></script> -->
-            </body>
-            </html>
+// script for handling back button functionality
+history.pushState(null, null, document.URL);
+window.addEventListener('popstate', function () {
+    history.pushState(null, null, document.URL);
+    alert("Please use Back Button on page");
+});
+</script> 
+<!-- <script src="assets/js/style-switcher.js"></script> -->
+</body>
+</html>

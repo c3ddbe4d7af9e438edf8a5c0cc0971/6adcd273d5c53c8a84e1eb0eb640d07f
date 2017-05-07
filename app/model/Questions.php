@@ -7,22 +7,21 @@ class Questions extends Model
 	// this function is used for adding the question
 	public static function add_question($quiz_id,$details)
 	{
-		$model 					=new self;
-		$passage				= $details['passage'];
-		$h_passage				= $details['h_passage'];
-		$question				= $details['question'];
-		$h_question				= $details['h_question'];
-		$A 						= $details['A'];
-		$B 						= $details['B'];
-		$C 						= $details['C'];
-		$D 						= $details['D'];
-		$answer 				= $details['answer'];
-
-		$h_A 					= $details['h_A'];
-		$h_B 					= $details['h_B'];
-		$h_C 					= $details['h_C'];
-		$h_D 					= $details['h_D'];
-		$h_answer 				= $details['h_answer'];
+		$model 					=	new self;
+		$passage				= 	$details['passage'];
+		$h_passage				= 	$details['h_passage'];
+		$question				= 	$details['question'];
+		$h_question				= 	$details['h_question'];
+		$A 						= 	$details['A'];
+		$B 						= 	$details['B'];
+		$C 						= 	$details['C'];
+		$D 						= 	$details['D'];
+		$answer 				= 	$details['answer'];
+		$h_A 					= 	$details['h_A'];
+		$h_B 					= 	$details['h_B'];
+		$h_C 					= 	$details['h_C'];
+		$h_D 					= 	$details['h_D'];
+		$h_answer 				= 	$details['h_answer'];
 
 		if($answer=='1'){
 			$answer = $details['A'];
@@ -83,9 +82,10 @@ class Questions extends Model
 		$questions=$model->SELECT("SELECT * FROM questions WHERE id=$question_id LIMIT 1");
 		return $questions;
 	}
+	// this function is used for update the single question
 	public static function updatesingle_question($question_id,$details)
 	{
-		$model=new self;
+		$model 					= new self;
 		$passage				= $details['passage'];
 		$h_passage				= $details['h_passage'];
 		$question				= $details['question'];
@@ -194,11 +194,6 @@ class Questions extends Model
 				 	$col1 = $data[1]; // answer key
 					$col2 = $data[2]; //  marks
 					$col3 = $data[3];  // neg_marks
-
-					
-				   
-					
-
 					$model->Update("UPDATE questions SET ansoption=:ansoption,marks=:marks,neg_marks=:neg_marks WHERE id=:id",array('ansoption'=>$col1,'marks'=>$col2,'neg_marks'=>$col3,'id'=>$col0));
 					
 				}
@@ -207,6 +202,7 @@ class Questions extends Model
 			}
 		}
 	}
+	//this function used for demo answer key
 	public static function demoAnswerKeyCsv()
 	{
 		$link = mysql_connect('localhost', 'root', '') or die("Couldn't make connection.");
@@ -259,7 +255,7 @@ class Questions extends Model
 			return 'null';
 		}
 	}
-
+// this function is used for export the questions
 	public static function exportToExl_2($quiz_id){
     		$link = mysql_connect('localhost', 'root', '') or die("Couldn't make connection.");
 			$db = mysql_select_db('exam', $link) or die("Couldn't select database");
@@ -298,7 +294,7 @@ class Questions extends Model
 			header("Expires: 0");
 			echo ucwords($setMainHeader)."\n".$setData."\n";
     }
-
+// this function is used for get the exam id 
     public static function getExamID($quiz_id){
     	$model= new self;
     	$exam_id=$model->SELECT(" SELECT exam_id from quizzes where id=$quiz_id LIMIT 0,1");

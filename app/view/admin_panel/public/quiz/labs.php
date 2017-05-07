@@ -57,7 +57,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                         <img src="assets/img/logo1.jpg" alt="">
+                         <img src="assets/img/logo1.png" height="50" alt="">
                     </header>
                     <div class="topnav">
         <div class="btn-group">
@@ -96,7 +96,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
     <div class="main-bar">
         <h3>
             <i class="fa fa-table"></i>&nbsp;
-            Centers
+            Labs
              <a href="/demo_user_csv">
                 <button type="button" class="btn btn-success"> Demo User CSV </button>
             </a>
@@ -128,7 +128,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
             <div class="media-body">
                 <div style="background-color:green;border-radius:50px;width:15px;height:15px;"></div>
                 <h5 class="media-heading">Name: <?=$admin->name?> </h5>
-                <h5 class="media-heading">Update: <?=$admin->updated_at?></h5>
+                <h5 class="media-heading">Last Login: <?=$admin->login_at?></h5>
                 <ul class="list-unstyled user-info">
                     <!-- <li><a href=""><?=$admin->name?></a></li>
                     <li>Update :<br>
@@ -191,7 +191,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
                     <div class="box">
                         <header>
                             <div class="icons"><i class="fa fa-table"></i></div>
-                            <h5>Center Users</h5>
+                            <h5>Available Labs</h5>
                             </header>
                 <div class="panel">
                   <div class="panel-content">
@@ -206,16 +206,16 @@ $actual_link = $_SERVER['REQUEST_URI'];
                           <p>Available Center</p>
                         </a>
 
-                        <a href="/labs?quiz_id=<?=$quiz_id?>&center_id=<?=$center_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/labs?quiz_id='.$quiz_id.'&center_id='.$center_id) {echo 'active';} ?>">
+                        <a href="/labs?center_id=<?=$center_id?>&quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/labs?center_id='.$center_id.'&quiz_id='.$quiz_id) {echo 'active';} ?>">
                           <i class="glyphicon glyphicon-plus"></i>
                           <p>Available Labs</p>
                         </a>
 
 
-                        <a href="/alloted_users?center_code=<?=$center_id?>&quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/alloted_users?quiz_id='.$quiz_id&'center_id='.$center_id) {echo 'active';} ?>">
+                       <!--  <a href="/alloted_users?center_code=<?=$center_id?>&quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/alloted_users?quiz_id='.$quiz_id&'center_id='.$center_id) {echo 'active';} ?>">
                           <i class="glyphicon glyphicon-ok"></i>
                           <p>Alloted Users</p>
-                        </a>
+                        </a> -->
                          <a href="/exam_instructions?quiz_id=<?=$quiz_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/exam_instructions?quiz_id='.$quiz_id) {echo 'active';} ?>">
                           <i class="glyphicon glyphicon-file"></i>
                           <p>Exam Instruction</p>
@@ -248,7 +248,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
                                             <th>Sr.No</th>
                                             <th>Lab Name</th>
                                             <th>Lab Code</th>
-                                            <th>Lab Capability</th>
+                                            <th>Lab Capacity</th>
                                             <th>Center Name</th>
                                             <th>Action</th>
                                         </tr>
@@ -272,11 +272,11 @@ $actual_link = $_SERVER['REQUEST_URI'];
                                                             </button>
                                                         </a>
 
-                                                        <a href="/delete_lab?center_id=<?=$center_id?>&lab_id=<?php echo $value->id?>">
-                                                            <button type="button" class="btn btn-danger">
-                                                            <i class="" aria-hidden="true"></i>Delete
-                                                            </button>
-                                                        </a>
+                                                        <!-- <a href="/delete_lab?center_id=<?=$center_id?>&lab_id=<?php echo $value->id?>" onclick="return confirm('Are you sure you want to Remove?');">
+                                                             <button type="button" class="btn btn-danger">
+                                                             <i class="" aria-hidden="true"></i>Delete
+                                                             </button>
+                                                         </a>-->
                                                         </td>
                                                    
                                                     

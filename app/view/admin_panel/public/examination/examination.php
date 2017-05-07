@@ -63,7 +63,7 @@ $admin=$data['admin'];
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-             <img src="assets/img/logo1.jpg" alt="">
+             <img src="assets/img/logo1.png" height="50" alt="">
           </header>
           <div class="topnav">
     <div class="btn-group">
@@ -134,7 +134,7 @@ $admin=$data['admin'];
             <div class="media-body">
                 <div style="background-color:green;border-radius:50px;width:15px;height:15px;"></div>
                 <h5 class="media-heading">Name: <?=$admin->name?> </h5>
-                <h5 class="media-heading">Update: <?=$admin->updated_at?></h5>
+                <h5 class="media-heading">Last Login: <?=$admin->login_at?></h5>
                 <ul class="list-unstyled user-info">
                     <!-- <li><a href=""><?=$admin->name?></a></li>
                     <li>Update :<br>
@@ -208,7 +208,7 @@ $admin=$data['admin'];
                           <button type="button" class="btn btn_position btn-warning pull-left">
                             <i class="fa fa-pencil-square" aria-hidden="true"></i> Edit </button>
                           </a>
-                          <form action="/delete_examination?authority_id=<?=$authority_id?>&exam_id=<?php echo $value->id?>" method="POST">
+                          <form onSubmit="if(!confirm('Do you really want to delete?')){return false;}" action="/delete_examination?authority_id=<?=$authority_id?>&exam_id=<?php echo $value->id?>" method="POST">
                             <button type="submit" class="btn btn-danger btn_position1 pull-right">
                               <i class="fa fa-minus-circle" aria-hidden="true"></i> Remove </button>
                             </form>

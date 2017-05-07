@@ -57,7 +57,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                         <img src="assets/img/logo1.jpg" alt="">
+                         <img src="assets/img/logo1.png" height="50" alt="">
                     </header>
                     <div class="topnav">
         <div class="btn-group">
@@ -128,7 +128,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
             <div class="media-body">
                 <div style="background-color:green;border-radius:50px;width:15px;height:15px;"></div>
                 <h5 class="media-heading">Name: <?=$admin->name?> </h5>
-                <h5 class="media-heading">Update: <?=$admin->updated_at?></h5>
+                <h5 class="media-heading">Last Login: <?=$admin->login_at?></h5>
                 <ul class="list-unstyled user-info">
                     <!-- <li><a href=""><?=$admin->name?></a></li>
                     <li>Update :<br>
@@ -195,7 +195,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
                             <a  href="/edit_quiz?exam_id=<?=$quizzes[0]->exam_id?>&quiz_id=<?=$quizzes[0]->id?>">
                                 <button type="button" class="btn btn-warning pull-right"> Edit Exam </button>
                             </a>
-                             <form action="<?php echo '/delete_quiz?exam_id='.$quizzes[0]->exam_id.'&quiz_id='.$quizzes[0]->id ?>" method="POST">
+                             <form onSubmit="if(!confirm('Do you really want to delete?')){return false;}" action="<?php echo '/delete_quiz?exam_id='.$quizzes[0]->exam_id.'&quiz_id='.$quizzes[0]->id ?>" method="POST">
                             <button type="submit" class="btn btn-danger pull-right">
                               <i class="fa fa-minus-circle" aria-hidden="true"></i> Remove </button>
                             </form>

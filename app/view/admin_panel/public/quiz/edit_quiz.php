@@ -65,7 +65,7 @@ $admin=$data['admin'];
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                         <img src="assets/img/logo1.jpg" alt="">
+                         <img src="assets/img/logo1.png" height="50" alt="">
                     </header>
                     <div class="topnav">
         <div class="btn-group">
@@ -125,7 +125,7 @@ $admin=$data['admin'];
             <div class="media-body">
                 <div style="background-color:green;border-radius:50px;width:15px;height:15px;"></div>
                 <h5 class="media-heading">Name: <?=$admin->name?> </h5>
-                <h5 class="media-heading">Update: <?=$admin->updated_at?></h5>
+                <h5 class="media-heading">Last Login: <?=$admin->login_at?></h5>
                 <ul class="list-unstyled user-info">
                     <!-- <li><a href=""><?=$admin->name?></a></li>
                     <li>Update :<br>
@@ -226,6 +226,7 @@ $admin=$data['admin'];
                                         <br>
                                     </div>
                                     <div class="form-group">
+                                     <input type="hidden" name="logo1" value="<?=$value->logo?>">
                                         <label class="control-label col-lg-4"> Logo:</label>
                                         <div class="col-lg-8">
                                             <img src="<?php echo 'uploads/logo/'.$value->logo; ?>" height="50" width="80">
@@ -305,6 +306,13 @@ $admin=$data['admin'];
         Metis.MetisTable();
         Metis.metisSortable();
     });
+     var a= document.getElementById('logo');
+    a.onchange=function(){
+        var file=a.files[0];
+        if(file.size>15000){
+            alert("file size must be less than 15kb");
+        }
+    };
     // script for handling back button functionality
                       history.pushState(null, null, document.URL);
                       window.addEventListener('popstate', function () {
