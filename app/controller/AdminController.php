@@ -556,6 +556,17 @@ class AdminController
           return View::make('admin_panel/public/question/user_log_list',['admin'=>$admin,'quiz_id'=>$quiz_id,'user_list'=>$user_list,'exam_id'=>$exam_id]);
     	}
     }
+
+        public function failure_users() //method showing user list 
+    {
+    	$admin 			= 	Admins::auth();
+    	$details  		= 	Input::get(array('quiz_id','is_failure'));
+    	if($user_failure_list=Quizzes::get_user_failure_list_quizid($details)){
+          return View::make('admin_panel/public/quiz/failure_users',['admin'=>$admin,'quiz_id'=>$details['quiz_id'],'user_failure_list'=>$user_failure_list]);
+    	}
+    }
+
+
     public function get_user_log_details() //method used for showing the user log details
     {
     	$admin 			= 	Admins::auth();

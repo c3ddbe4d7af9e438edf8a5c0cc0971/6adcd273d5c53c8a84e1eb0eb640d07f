@@ -1,11 +1,10 @@
 <?php
-$quizzes=$data['quizzes'];
-//$exam_id=$data['exam_id'];
-$admin=$data['admin'];
-  // echo "<pre>";print_r($quizzes);die;
-$actual_link = $_SERVER['REQUEST_URI'];
-//echo $actual_link; 
+$exam_id=$data['exam_id'];
+$user_failure_list=$data['user_failure_list'];
+$quiz_id=$data['quiz_id'];
 
+$admin=$data['admin'];
+$actual_link = $_SERVER['REQUEST_URI'];
 ?>
 <!doctype html>
 <html>
@@ -96,7 +95,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
     <div class="main-bar">
         <h3>
             <i class="fa fa-table"></i>&nbsp;
-            Exam Details
+            Exam User
              <a href="/demo_user_csv">
                 <button type="button" class="btn btn-success"> Demo User CSV </button>
             </a>
@@ -112,6 +111,8 @@ $actual_link = $_SERVER['REQUEST_URI'];
     </div>
     <!-- /.main-bar -->
 </header>
+
+
 <!-- /.head -->
 </div>
 <!-- /#top -->
@@ -126,7 +127,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
                 <!-- <span class="label label-danger user-label">16</span> -->
             </a>
             <div class="media-body">
-                <div style="background-color:green;border-radius:50px;width:15px;height:15px;"></div>
+               <div style="background-color:green;border-radius:50px;width:15px;height:15px;"></div>
                 <h5 class="media-heading">Name: <?=$admin->name?> </h5>
                 <h5 class="media-heading">Last Login: <?=$admin->login_at?></h5>
                 <ul class="list-unstyled user-info">
@@ -191,105 +192,70 @@ $actual_link = $_SERVER['REQUEST_URI'];
                     <div class="box">
                         <header>
                             <div class="icons"><i class="fa fa-table"></i></div>
-                            <h5>Exam Details</h5>
-                            <a  href="/edit_quiz?exam_id=<?=$quizzes[0]->exam_id?>&quiz_id=<?=$quizzes[0]->id?>">
-                                <button type="button" class="btn btn-warning pull-right"> Edit Exam </button>
-                            </a>
-                             <form onSubmit="if(!confirm('Do you really want to delete?')){return false;}" action="<?php echo '/delete_quiz?exam_id='.$quizzes[0]->exam_id.'&quiz_id='.$quizzes[0]->id ?>" method="POST">
-                            <button type="submit" class="btn btn-danger pull-right">
-                              <i class="fa fa-minus-circle" aria-hidden="true"></i> Remove </button>
-                            </form>
+                            <h5>Exam User</h5>
                             </header>
-                             <div class="panel">
+
+              <div class="panel">
                   <div class="panel-content">
                     
                       <div class="btn-group btn-group-justified">
-                       <a href="/quiz_details?quiz_id=<?=$quizzes[0]->id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/quiz_details?quiz_id='.$quizzes[0]->id) {echo 'active';} ?>">
-                          <i class="glyphicon glyphicon-home"></i>
-                          <p>Exam Details</p>
+                          <a href="/failure_users?quiz_id=<?=$quiz_id?>&is_failure=1" class="btn btn-primary col-sm-3 <?php if($actual_link=='/failure_users?quiz_id='.$quiz_id) {echo 'active';} ?>">
+                          <i class="glyphicon glyphicon-remove"></i>
+                          <p>Failure Users</p>
                         </a>
-                      <a href="/centers?quiz_id=<?=$quizzes[0]->id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/centers?quiz_id='.$quizzes[0]->id) {echo 'active';} ?>">
-                          <i class="glyphicon glyphicon-plus"></i>
-                          <p>Available Center</p>
-                        </a>
-                        <!--  <a href="/alloted_users?center_code=<?=$center_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/centers?quiz_id='.$quiz_id) {echo 'active';} ?>">
-                          <i class="glyphicon glyphicon-plus"></i>
-                          <p>Allocated Users</p>
-                        </a> -->
-                       
-                        <a href="/exam_instructions?quiz_id=<?=$quizzes[0]->id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/exam_instructions?quiz_id='.$quizzes[0]->id) {echo 'active';} ?>">
-                          <i class="glyphicon glyphicon-file"></i>
-                          <p>Exam Instruction</p>
-                        </a>
-                        <a href="/question_manager?quiz_id=<?=$quizzes[0]->id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/question_manager?quiz_id='.$quizzes[0]->id) {echo 'active';} ?>">
-                          <i class="glyphicon glyphicon-list"></i>
-                          <p>Exam Questions</p>
-                        </a>
-                        <a href="/import_user_exam?quiz_id=<?=$quizzes[0]->id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/user_list?quiz_id='.$quizzes[0]->id) {echo 'active';} ?>">
-                          <i class="glyphicon glyphicon-cloud-upload"></i>
-                          <p>Import User Exam</p>
-                        </a>
-                        <a href="/user_list?quiz_id=<?=$quizzes[0]->id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/user_list?quiz_id='.$quizzes[0]->id) {echo 'active';} ?>">
-                          <i class="glyphicon glyphicon-user"></i>
-                          <p>Exam User</p>
-                        </a>
-
+                      <a href="/failure_users?quiz_id=<?=$quiz_id?>&is_failure=0" class="btn btn-primary col-sm-3 <?php if($actual_link=='/lab_users?center_id='.$center_id.'&quiz_id='.$quiz_id.'&center_lab_id='.$center_lab_id.'&lab_id='.$lab_id) {echo 'active';} ?>">
+                          <i class="glyphicon glyphicon-ok"></i>
+                          <p>Un-Failure Users</p>
+                        </a>      
                       </div>
                   </div><!--/panel content-->
               </div><!--/panel-->
-              
                             <div id="collapse4" class="body">
                                 <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
-                                   <!--  <thead>
+                                    <thead>
                                         <tr>
                                             <th>Sr.No</th>
-                                            <th>Quiz name</th>
-                                             <th>Users</th>
-                                             <th>Questions</th>
-                                            <th>Duration</th>
-                                            <th>Total Question</th>
-                                            <th>Action</th>
+                                            <th>Registration Number</th>
+                                             <th>Name</th>
+                                             
+                                            <th>Login Time</th>
+                                            <th>Last Request</th>
+                                            <th>Status</th>
                                         </tr>
-                                    </thead> -->
+                                    </thead>
                                     <tbody>
-                                    <tr>
-                                     <td><b>Examination</b></td>
-                                      <td><?=$quizzes[0]->examination?></td>
-                                    </tr>
-                                     <tr>
-                                      <td><b>Exam Name</b></td>
-                                      <td><?=$quizzes[0]->name?></td>
-                                    </tr>
-                                     <tr>
-                                      <td><b>Title</b></td>
-                                      <td><?=$quizzes[0]->title?></td>
-                                    </tr>
-                                     <tr>
-                                      <td><b>Logo</b></td>
-                                      <td><img height="80" width="80" src="<?php echo 'uploads/logo/'.$quizzes[0]->logo; ?>"></td>
-                                    </tr>
-                                     <tr>
-                                      <td><b>Total Questions</b></td>
-                                      <td><?=$quizzes[0]->total_ques?></td>
-                                    </tr>
-                                     <tr>
-                                      <td><b>Time Duration</b></td>
-                                      <td><?=$quizzes[0]->duration?></td>
-                                    </tr>
-                                     <tr>
-                                      <td><b>Created Time</b></td>
-                                      <td><?=$quizzes[0]->created_at?></td>
-                                    </tr>
-                                     <tr>
-                                      <td><b>Last Updated</b></td>
-                                      <td><?=$quizzes[0]->updated_at?></td>
-                                    </tr>
-                                        
-                                                    </tbody>
-
+                                        <?php $i=0; ?>
+                                        <?php if($user_failure_list!='null') { ?>
+                                            <?php foreach($user_failure_list as $key => $value) {?>
+                                                <tr>
+                                                    <td><?php echo ++$i ;?></td>
+                                                    <td><a href="/user_log_details?quiz_id=<?=$quiz_id?>&user_id=<?php echo $value->id; ?>"><?php echo $value->reg_num; ?></a></td>
+                                                    <td><a href="/user_details?user_id=<?php echo $value->id; ?>"><?php echo $value->name; ?></a></td>
+                                                    
+                                                    <td><?php echo $value->login_at; ?></td>
+                                                    
+                                                    <td><?php echo $value->failure_time; ?></td>
+                                                    <!--<td><?php if($value->Minutes>2){echo 'user alive';}else{ echo 'not alive -> '.$value->Minutes; } ?></td>-->
+                                                    <?php 
+                                                    $to_time = new \DateTime(date('y-m-d h:i:s'));
+                                                    $from_time = new \DateTime($value->failure_time);
+                                                    $diff = $from_time->diff($to_time);
+                                                    //echo $diff->format('%i Minutes');?>
+                                                    <td><?php if($diff->format('%i Minutes')>2) {echo 'failure '.$diff->format('%i Minutes');}else{ echo 'alive';}?></td>
+                                                    </tr>
+                                                    <?php }?>
+                                                    <?php } else {?>
+                                                        <td>
+                                                            <div class="sparkline bar_week"></div>
+                                                            <div class="stat_text">
+                                                                <strong>Not Found</strong>
+                                                            </div>
+                                                        </td>
+                                                        <?php }?>
+                                                    </tbody>                
                                                 </table>
-                                                 <a  href="quiz?exam_id=<?=$quizzes[0]->exam_id;?>">
-                                <button type="button" class="btn btn-primary"> Back </button></a>   
+                                             <a  href="quiz?exam_id=<?=$exam_id[0]->exam_id;?>">
+                                <button type="button" class="btn btn-primary"> Back </button></a>
                                             </div>
                                         </div>
                                     </div>
@@ -314,8 +280,8 @@ $actual_link = $_SERVER['REQUEST_URI'];
                 <!-- <script src="assets/js/jquery-ui.min.js"></script> -->
                 <script src="assets/js/jquery.dataTables.min.js"></script>
                 <script src="assets/js/dataTables.bootstrap.min.js"></script>
-                <!-- <script src="assets/js/jquery.tablesorter.min.js"></script> -->
-                <!-- <script src="assets/js/jquery.ui.touch-punch.min.js"></script> -->
+                <script src="assets/js/jquery.tablesorter.min.js"></script>
+                <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
                 <!--Bootstrap -->
                 <script src="assets/lib/bootstrap/js/bootstrap.js"></script>
                 <!-- MetisMenu -->
@@ -327,17 +293,44 @@ $actual_link = $_SERVER['REQUEST_URI'];
                 <!-- Metis demo scripts -->
                 <script src="assets/js/app.js"></script>
                 <script>
-                    $(function() {
-                        Metis.MetisTable();
-                        Metis.metisSortable();
-                    });
-                     // script for handling back button functionality
-                      history.pushState(null, null, document.URL);
-                      window.addEventListener('popstate', function () {
-                      history.pushState(null, null, document.URL);
-                      alert("Please use Back Button on page");
-                      });
+                    
+
+                          // // script for handling back button functionality
+                          // history.pushState(null, null, document.URL);
+                          // window.addEventListener('popstate', function () {
+                          // history.pushState(null, null, document.URL);
+                          // alert("Please use Back Button on page");
+                          // });
+
+                      //     var ft=setInterval(function(){
+                      //   $.ajax({
+                      //   url:'/failure_users',
+                      //   method:'GET',
+                      // }).done(function(data){
+                      //   result=$.parseJSON(data);
+                      //   if (result.success=='1') {
+                      //     //alert('hello');
+                      //     if(result.data[0].count<4){
+                      //       alert('please do somthing');
+                      //       $(document).trigger('click');
+                      //       return false;
+                      //     }
+                      //     else{
+                      //       window.location.href="/submit";
+                      //       return false;
+                      //     }
+                      //   }
+                      // });
+                      // },2000);
                 </script>
                 <!-- <script src="assets/js/style-switcher.js"></script> -->
+
+                <script type="text/javascript">
+                    $(document).ready(function(){
+                        setInterval(function(){
+                            window.location.reload();
+                        },10000);
+                    })
+                </script>
             </body>
             </html>

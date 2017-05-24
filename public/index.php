@@ -157,5 +157,7 @@ $route->get('/demo_question_csv','AdminController@demo_question_csv');
 $route->get('/demo_instruction_csv','AdminController@demo_instruction_csv');
 $route->get('/demo_answer_csv','AdminController@demo_answer_key_csv');
 //***************** demo export csv files Ends******************//
+$route->get('/failure_users','AdminController@failure_users');
+
 $route->run();
 ?>

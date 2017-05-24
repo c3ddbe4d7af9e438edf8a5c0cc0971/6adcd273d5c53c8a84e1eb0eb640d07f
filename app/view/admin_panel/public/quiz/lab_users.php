@@ -366,7 +366,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
                     //alert(a);
                     if(a==true){
                     alert("please uncheck atleast one");
-                    exit();
+                    return false;
                         }
                     }
 

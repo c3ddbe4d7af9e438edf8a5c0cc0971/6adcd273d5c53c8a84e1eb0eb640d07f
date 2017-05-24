@@ -227,6 +227,21 @@ $actual_link = $_SERVER['REQUEST_URI'];
                       </div>
                   </div><!--/panel content-->
               </div><!--/panel-->
+              <div class="panel">
+                  <div class="panel-content">
+                    
+                      <div class="btn-group btn-group-justified">
+                          <a href="/failure_users?quiz_id=<?=$quiz_id;?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/failure_users?quiz_id='.$quiz_id) {echo 'active';} ?>">
+                          <i class="glyphicon glyphicon-remove"></i>
+                          <p>Failure Users</p>
+                        </a>
+                      <a href="/unfailure_users?center_id=<?=$center_id?>&quiz_id=<?=$quiz_id?>&center_lab_id=<?=$center_lab_id?>&lab_id=<?=$lab_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/lab_users?center_id='.$center_id.'&quiz_id='.$quiz_id.'&center_lab_id='.$center_lab_id.'&lab_id='.$lab_id) {echo 'active';} ?>">
+                          <i class="glyphicon glyphicon-ok"></i>
+                          <p>Un-Failure Users</p>
+                        </a>      
+                      </div>
+                  </div><!--/panel content-->
+              </div><!--/panel-->
                             <div id="collapse4" class="body">
                                 <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
                                     <thead>
