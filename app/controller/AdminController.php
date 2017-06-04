@@ -1055,6 +1055,16 @@ class AdminController
     		header('location:/labs?center_id='.$center_id.'&quiz_id='.$quiz_id);
     	}
     }
+
+
+    public function makealive(){
+    	$details=Input::post(array('id','quiz_id'));
+    	if(false!==Admins::makealive($details)){
+    		return Json::make('1','makealive Successfull')->response();
+    	}
+    	return Json::make('0','Server Error')->response();
+
+    }
 //************** Ends all Functions For the Labs *****************//
     
 }

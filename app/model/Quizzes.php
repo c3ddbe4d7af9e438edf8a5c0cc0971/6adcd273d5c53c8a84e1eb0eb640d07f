@@ -508,7 +508,7 @@ $count_center_cap = (new self)->SELECT("select SUM(b.capacity) as center_cap,a.c
 	public static function get_user_failure_list_quizid($details){
 		//echo 'hhh'; die;
 		$model 		= new self;
-		$sql="SELECT users.*,user_quizes.failure_time, TIMESTAMPDIFF(MINUTE,user_quizes.`failure_time`,NOW())
+		$sql="SELECT users.*,user_quizes.failure_time,user_quizes.started_time, TIMESTAMPDIFF(MINUTE,user_quizes.`failure_time`,NOW())
 		as Minutes 
 		from user_quizes left JOIN users on user_quizes.user_id=users.id where user_quizes.quiz_id =:quiz_id";
 
@@ -517,16 +517,13 @@ $count_center_cap = (new self)->SELECT("select SUM(b.capacity) as center_cap,a.c
 		}else{
 			$sql.=' having Minutes<2';
 		}
-		var_dump($details);
 		$user_failure_list 	= $model->SELECT($sql,array('quiz_id'=>$details['quiz_id']));
-		if($user_failure_list)
+		if(!empty($user_failure_list))
 		{
 			return $user_failure_list;
 		}
-		else
-		{
-			return 'null';
-		}
+		return false;
+		
 	}
 }
 

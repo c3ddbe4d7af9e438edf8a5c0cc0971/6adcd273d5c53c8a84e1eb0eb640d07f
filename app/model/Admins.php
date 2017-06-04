@@ -704,5 +704,14 @@ public static function truncateUserAnswerTable()
 	return $truncate;
 }
 
+public static function makealive($details){
+	 $a=(new self)->update("UPDATE users set is_login=0 where id=:id",array('id'=>$details['id']));
+	 $b=(new self)->update("UPDATE user_quizes set is_fail=1 where user_id=:id and quiz_id=:quiz_id",array('id'=>$details['id'],'quiz_id'=>$details['quiz_id']));
+	if($a and $b){
+		return true;
+	}
+	return false;
+}
+
 }
 ?>

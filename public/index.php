@@ -2,7 +2,7 @@
 //46951273
 require_once '../app/init.php';
 header("Access-Control-Allow-Origin:".DOMAIN_URL);
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
 $route=new Route;
 $route->get('/','AdminAuth@getAdminLogin');
 $route->get('/admin','AdminAuth@getAdminLogin');
@@ -158,6 +158,8 @@ $route->get('/demo_instruction_csv','AdminController@demo_instruction_csv');
 $route->get('/demo_answer_csv','AdminController@demo_answer_key_csv');
 //***************** demo export csv files Ends******************//
 $route->get('/failure_users','AdminController@failure_users');
+
+$route->post('/makealive','AdminController@makealive');
 
 $route->run();
 ?>

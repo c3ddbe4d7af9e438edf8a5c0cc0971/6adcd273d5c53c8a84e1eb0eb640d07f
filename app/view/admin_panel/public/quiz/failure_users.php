@@ -216,11 +216,11 @@ $actual_link = $_SERVER['REQUEST_URI'];
                                         <tr>
                                             <th>Sr.No</th>
                                             <th>Registration Number</th>
-                                             <th>Name</th>
-                                             
+                                            <th>Name</th>
                                             <th>Login Time</th>
                                             <th>Last Request</th>
                                             <th>Status</th>
+                                            <th>Make Alive</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -232,7 +232,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
                                                     <td><a href="/user_log_details?quiz_id=<?=$quiz_id?>&user_id=<?php echo $value->id; ?>"><?php echo $value->reg_num; ?></a></td>
                                                     <td><a href="/user_details?user_id=<?php echo $value->id; ?>"><?php echo $value->name; ?></a></td>
                                                     
-                                                    <td><?php echo $value->login_at; ?></td>
+                                                    <td><?php echo $value->started_time; ?></td>
                                                     
                                                     <td><?php echo $value->failure_time; ?></td>
                                                     <!--<td><?php if($value->Minutes>2){echo 'user alive';}else{ echo 'not alive -> '.$value->Minutes; } ?></td>-->
@@ -242,6 +242,8 @@ $actual_link = $_SERVER['REQUEST_URI'];
                                                     $diff = $from_time->diff($to_time);
                                                     //echo $diff->format('%i Minutes');?>
                                                     <td><?php if($diff->format('%i Minutes')>2) {echo 'failure '.$diff->format('%i Minutes');}else{ echo 'alive';}?></td>
+                                                    <td> 
+                                                        <i data-id="<?php echo $value->id;?>" data-quiz="<?=$quiz_id?>"  class="status_checks btn <?=Input::get('is_failure')==1?'btn-danger':'btn-success'?>"><?=Input::get('is_failure')==1?'Make Alive':'Alive'?></i></td>
                                                     </tr>
                                                     <?php }?>
                                                     <?php } else {?>
@@ -331,6 +333,26 @@ $actual_link = $_SERVER['REQUEST_URI'];
                             window.location.reload();
                         },10000);
                     })
+
+                    $(document).on('click','.status_checks',function(){
+                        var status = ($(this).hasClass("btn-success")) ? '0' : '1';
+                        var msg = (status=='0')? 'Deactivate' : 'Activate';
+                        if(confirm("Are you sure to "+ msg)){
+                            var current_element = $(this);
+                            url = "/makealive";
+                            var id = $(current_element).attr('data-id');
+                            var quiz_id=$(current_element).attr('data-quiz');
+                            $.ajax({
+                                type:"POST",
+                                url: "/makealive",
+                                data: {id:id,quiz_id:quiz_id},
+                                success: function(data)
+                                {  
+                                   //location.reload();
+                                }
+                            });
+                        }      
+                    });
                 </script>
             </body>
             </html>
