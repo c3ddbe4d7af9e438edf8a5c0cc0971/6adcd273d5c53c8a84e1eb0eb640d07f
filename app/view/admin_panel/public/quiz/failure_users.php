@@ -2,7 +2,6 @@
 $exam_id=$data['exam_id'];
 $user_failure_list=$data['user_failure_list'];
 $quiz_id=$data['quiz_id'];
-
 $admin=$data['admin'];
 $actual_link = $_SERVER['REQUEST_URI'];
 ?>
@@ -225,7 +224,7 @@ $actual_link = $_SERVER['REQUEST_URI'];
                                     </thead>
                                     <tbody>
                                         <?php $i=0; ?>
-                                        <?php if($user_failure_list!='null') { ?>
+                                        <?php if(!empty($user_failure_list)) { ?>
                                             <?php foreach($user_failure_list as $key => $value) {?>
                                                 <tr>
                                                     <td><?php echo ++$i ;?></td>
@@ -235,18 +234,9 @@ $actual_link = $_SERVER['REQUEST_URI'];
                                                     <td><?php echo $value->started_time; ?></td>
                                                     
                                                     <td><?php echo $value->failure_time; ?></td>
-                                                    <!--<td><?php if($value->Minutes>2){echo 'user alive';}else{ echo 'not alive -> '.$value->Minutes; } ?></td>-->
-                                                    <?php 
-                                                    $to_time = new \DateTime(date('y-m-d h:i:s'));
-                                                    $from_time = new \DateTime($value->failure_time);
-                                                    $diff = $from_time->diff($to_time);
-                                                    //echo $diff->format('%i Minutes');?>
-                                                    <td><?php if($diff->format('%i Minutes')>2) {echo 'failure '.$diff->format('%i Minutes');}else{ echo 'alive';}?></td>
-                                                    <td> 
-                                                        <i data-id="<?php echo $value->id;?>" data-quiz="<?=$quiz_id?>"  class="status_checks btn <?=Input::get('is_failure')==1?'btn-danger':'btn-success'?>"><?=Input::get('is_failure')==1?'Make Alive':'Alive'?></i></td>
-                                                    </tr>
-                                                    <?php }?>
-                                                    <?php } else {?>
+                                                    <td><?=round(abs(strtotime($value->failure_time)-strtotime($value->started_time))/60)?> Minutes</td>
+                                                    <td><i data-id="<?php echo $value->id;?>" data-quiz="<?=$quiz_id?>"  class="status_checks btn <?=Input::get('is_failure')==1?'btn-danger':'btn-success'?>"><?=Input::get('is_failure')==1?'Make Alive':'Alive'?></i></td>
+                                                    <?php } } else { ?>
                                                         <td>
                                                             <div class="sparkline bar_week"></div>
                                                             <div class="stat_text">

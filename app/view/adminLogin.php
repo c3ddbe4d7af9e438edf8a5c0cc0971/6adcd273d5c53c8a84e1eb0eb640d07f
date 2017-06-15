@@ -52,11 +52,11 @@
 <form action="/adminlogin" method="POST">
   <div class="form-group">
     <label for="exampleInputEmail1">User Name:</label>
-    <input type="text" class="form-control" id="text" placeholder="User Name" name="name">
+    <input type="text" class="form-control" id="text" placeholder="User Name" name="name" value="10001">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password:</label>
-    <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+    <input type="password" class="form-control" id="password" placeholder="Password" name="password" value="46951273">
   </div>
   
 

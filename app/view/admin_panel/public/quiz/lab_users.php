@@ -360,15 +360,15 @@ $actual_link = $_SERVER['REQUEST_URI'];
                     //     }
                     //     return true;
                     // }
-                    function testcheck() {
+                    // function testcheck() {
                        
-                    var a =document.getElementById("checkbox").checked;
-                    //alert(a);
-                    if(a==true){
-                    alert("please uncheck atleast one");
-                    return false;
-                        }
-                    }
+                    // var a =document.getElementById("checkbox").checked;
+                    // //alert(a);
+                    // if(a==true){
+                    // alert("please uncheck atleast one");
+                    // return false;
+                    //     }
+                    // }
 
 
                     // script for handling back button functionality

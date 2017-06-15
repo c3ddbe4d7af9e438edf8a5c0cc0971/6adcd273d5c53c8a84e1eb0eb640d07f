@@ -1,5 +1,5 @@
 <?php
-$exam_id=$data['exam_id'];
+ $exam_id=$data['exam_id'][0]->exam_id;
  $user_list=$data['user_list'];
  $quiz_id=$data['quiz_id'];
   // echo '<pre>';print_r($exam_id);die;
@@ -231,11 +231,11 @@ $actual_link = $_SERVER['REQUEST_URI'];
                   <div class="panel-content">
                     
                       <div class="btn-group btn-group-justified">
-                          <a href="/failure_users?quiz_id=<?=$quiz_id;?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/failure_users?quiz_id='.$quiz_id) {echo 'active';} ?>">
+                          <a href="/failure_users?quiz_id=<?=$quiz_id;?>&is_failure=1&exam_id=<?=$exam_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/failure_users?quiz_id='.$quiz_id) {echo 'active';} ?>">
                           <i class="glyphicon glyphicon-remove"></i>
                           <p>Failure Users</p>
                         </a>
-                      <a href="/unfailure_users?center_id=<?=$center_id?>&quiz_id=<?=$quiz_id?>&center_lab_id=<?=$center_lab_id?>&lab_id=<?=$lab_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/lab_users?center_id='.$center_id.'&quiz_id='.$quiz_id.'&center_lab_id='.$center_lab_id.'&lab_id='.$lab_id) {echo 'active';} ?>">
+                      <a href="/failure_users?quiz_id=<?=$quiz_id;?>&is_failure=0&exam_id=<?=$exam_id?>" class="btn btn-primary col-sm-3 <?php if($actual_link=='/lab_users?center_id='.$center_id.'&quiz_id='.$quiz_id.'&center_lab_id='.$center_lab_id.'&lab_id='.$lab_id) {echo 'active';} ?>">
                           <i class="glyphicon glyphicon-ok"></i>
                           <p>Un-Failure Users</p>
                         </a>      

@@ -560,10 +560,9 @@ class AdminController
         public function failure_users() //method showing user list 
     {
     	$admin 			= 	Admins::auth();
-    	$details  		= 	Input::get(array('quiz_id','is_failure'));
-    	if($user_failure_list=Quizzes::get_user_failure_list_quizid($details)){
-          return View::make('admin_panel/public/quiz/failure_users',['admin'=>$admin,'quiz_id'=>$details['quiz_id'],'user_failure_list'=>$user_failure_list]);
-    	}
+    	$details  		= 	Input::get(array('quiz_id','is_failure','exam_id'));
+    	$user_failure_list=Quizzes::get_user_failure_list_quizid($details);
+        return View::make('admin_panel/public/quiz/failure_users',['admin'=>$admin,'quiz_id'=>$details['quiz_id'],'user_failure_list'=>$user_failure_list]);
     }
 
 
@@ -1014,6 +1013,7 @@ class AdminController
     }
     public function un_allocate_center_lab_to_users() //method used for un-allocate center lab to users
     {
+    	// echo;
     	$admin      				= 	Admins:: auth();
     	$center_id    				= 	Input::get('center_id');
     	$quiz_id    				= 	Input::get('quiz_id');

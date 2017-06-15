@@ -517,12 +517,8 @@ $count_center_cap = (new self)->SELECT("select SUM(b.capacity) as center_cap,a.c
 		}else{
 			$sql.=' having Minutes<2';
 		}
-		$user_failure_list 	= $model->SELECT($sql,array('quiz_id'=>$details['quiz_id']));
-		if(!empty($user_failure_list))
-		{
-			return $user_failure_list;
-		}
-		return false;
+		// var_dump($sql);
+		return $model->SELECT($sql,array('quiz_id'=>$details['quiz_id']));
 		
 	}
 }

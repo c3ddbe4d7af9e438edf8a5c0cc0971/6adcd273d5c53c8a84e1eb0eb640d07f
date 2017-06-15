@@ -70,7 +70,6 @@ class Centers extends Model
           $quiz_id            = $details['quiz_id'];
           $center_lab_id      = $details['center_lab_id'];
           $lab_id             = $details['lab_id'];
-          $allocated_centers  = '';
           $center_code=$model1->SELECT("SELECT group_concat(user_id) as user_id from user_quizes
           WHERE center_lab_id=$center_lab_id AND quiz_id=$quiz_id")[0]->user_id;
           $center_code       = explode(',', $center_code);
